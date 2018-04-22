@@ -1,0 +1,6 @@
+http://tech.sina.com.cn/e/2018-04-20/doc-ifzihnep9124304.shtml
+科技
+三星：暂无OLED上市计划 正研发混合QD-OLED
+　　今年二月，曾有报道称，三星正在为未来的电视开发混合量子点OLED（QD-OLED）技术。该报道很快被三星视觉显示业务总裁Han Jong-hee否决，他表示三星坚持双规战略，即QD-OLED和Micro-LED。
+　　4月18日，ZDNet报道，Han Jong-hee再度表示，三星没有近期生产OLED电视的计划，并确认公司正在研发将量子点与OLED结合的方式。据悉，三星主要采用蓝色OLED发光体和蓝色光源，通过量子点进行白光转换，并结合彩色滤光片（QDCF）添加红色和绿色。
+　　Han Jong-hee进一步表示，三星计划2018年6月推出首款Micro-LED电视，届时将披露价格。预计，其首款146英寸Micro-LED显示器的价格将超过10万美元。Han Jong-hee还透露，三星正在寻找增强量子点涂层的Micro-LED阵列，再度将蓝光LED转换为白光发光使其更加易于Micro-LED显示器的制造。

@@ -1,0 +1,63 @@
+http://sports.sina.com.cn/go/2018-04-20/doc-ifznefkf7023876.shtml
+体育
+为何DeepMind和Google矛盾重重？ 或是体制问题
+　　文章来源：夏乙 发自 凹非寺
+　　量子位 出品 | 公众号 QbitAI
+　　DeepMind正在一步步的去除Google的痕迹。
+　　这是事实。
+　　2014年1月，Google宣布6亿美元收购这家当时名不见经传的公司。为此，Jeff Dean和Geoffrey Hinton还曾坐/躺在Google创始人拉里·佩奇的私人飞机里，专程赶赴伦敦对DeepMind进行了审查。
+　　那一年，DeepMind的官网首屏，用大大的字体写着：“DeepMind很高兴成为Google的一部分”。2015年改成：“DeepMind很兴奋加入Google的队伍”。
+　　2015年底，DeepMind搞出了AlphaGo。2016年，AlphaGo开始名满天下。而DeepMind的官网也悄悄发生变化，这一年，DeepMind官网新版上线。
+　　首页再也没有Google的字样，只在“关于我们”的页面，不是非常显眼的地方，提到了Google，而且明确表示DeepMind是Alphabet集团（Google母公司）的一部分。
+　　不仅是官网发生变化。
+　　2016年3月，AlphaGo对战韩国围棋九段棋手李世乭。那是DeepMind在大众视野里一战成名的前夜，从赛场、发布会到直播，它的名字都是Google DeepMind。
+　　一年多之后，乌镇，AlphaGo的对手换成了柯洁。DeepMind的名字没能列入主办方，只出现在活动的副标题里，前面也不再有Google。
+　　DeepMind后来再露面，名字前带Google的习惯好像是彻底没有了。
+　　同样是搞AI研究，同样是大牛云集。外界对于Google Brain和DeepMind之间的关系，一直有种种猜测。去年在乌镇，量子位就问过Google这个问题。
+　　当时Jeff Dean回答说：“DeepMind的工作可能更倾向于开发更加纯净、理想化环境中（比如游戏）的算法；我们则倾向于关注复杂一点的问题，也需要考虑落地的问题。”
+　　他还特意强调两个团队之间没有冲突，反而有很多互补和合作。
+　　是外界想多了么？
+　　可能不是，而且矛盾看似正在激化。
+　　刚刚，外媒The Information就一股脑的爆出一堆DeepMind的猛料。这也是DeepMind和Google之间纠葛，首次有大量实锤放出。
+　　又傲娇又烧钱
+　　总结一下。根据报道，DeepMind留给Google的印象，可以归结为两点。
+　　一是傲娇。
+　　波士顿动力，一家同样名满天下的机器人公司。不时以各种表现神奇的机器人震惊世界，比方踹不倒的机器狗，后空翻的机器人等等。
+　　安卓之父Andy Rubin离职的时候，佩奇想让DeepMind接管Google的机器人部门。不过DeepMind创始人兼CEO哈萨比斯拒绝了这个主意。原因很简单。
+　　哈萨比斯有点看不上波士顿动力。在他眼中，波士顿动力实在是没用上多少AI，接管这个业务，就意味着从AI上分散他的注意力。
+　　还有。
+　　Google的云计算业务，此前一直发展不力。后来VMware前任CEO、联合创始人Diane Greene被Google请来领导云计算业务部门。
+　　面对艰巨的任务，Greene的对策是主推AI云服务，以便在云计算的竞争中抢得先机。道理很简单，如果Google云提供的工具能帮助企业以复杂的方式分析数据，就能推动更多存储和计算服务的售卖。
+　　于是Google云找到了DeepMind。
+　　据两位知情人士透露，由于DeepMind在人工智能领域有很高的声誉，所以Greene团队希望能够借其品牌进行市场宣传。比方，在Google云服务中打上“Powered By DeepMind”的字样。
+　　但这个看似简单的提议，也被DeepMind无情的拒绝了。
+　　因为他们觉得Google云的市场目标不清晰，而且这个合作会削弱DeepMind的品牌。
+　　还有。
+　　一位Google前高管透露，DeepMind创始团队曾经在和Google员工进行讨论时，显得对Google已经开发出来的机器学习算法不怎么欣赏。
+　　而Google员工则认为，在Google所有AI团队都要向高级副总裁Giannandrea汇报的情况下，DeepMind却享受着一种特殊待遇。此前，还有员工在全员会议上让Giannandrea“给个说法”。
+　　在人才招聘上，DeepMind和Google Brain之间还有直接竞争。
+　　更重要的是，和DeepMind有冲突的不止Google Brain。2014年，穆斯塔法的团队准备和YouTube合作，改进推荐算法。然而，两个团队磨合得非常艰难，他们处在不同的时区，在彼此之间该共享多少数据的问题上又争执不定。于是，这个项目烂尾了。
+　　二是烧钱。
+　　去年英国政府公布的文件显示，DeepMind在2016年营收为5270万美元，而亏损了1.62亿美元。其中，工资、差旅、办公软硬件等费用支出就达1.37亿美元，同比增长了一倍多。
+　　有两名熟悉内情人士回忆说，不少Google原有的AI研究员对DeepMind收购案表示惊讶，也包括Google Brain的一些员工。
+　　当时，Google Brain的研究项目聚焦于一些比较实际的目标，比如优化Google地图的图像识别功能、增强Android的语音识别能力。
+　　他们和DeepMind之间摩擦不断，其中一个很重要的因素就是各自项目对整个公司账本底线的影响。Google Brain已经证明了自己对公司的价值，而DeepMind昂贵开支的合理性却始终受到怀疑。
+　　2015年新CFO Ruth Porat上任后，也开始向DeepMind施加压力。据DeepMind前员工回忆说，这位“华尔街最具权势的女人”要求DeepMind“展示出一些除了品牌之外的价值”。
+　　几个月后，穆斯塔法的“应用”部门还被要求对自己项目的影响做出财务预估。
+　　五年大限将至
+　　为何DeepMind和Google有点矛盾重重？
+　　“这一定是体制问题！”
+　　真的。Google收购DeepMind之后第一年，哈萨比斯和穆斯塔法还需要向Google高级副总裁Alan Eustace汇报业务。到2015年初，这位曾经管理Google搜索业务的老兵退休了，DeepMind的联合创始人们改成向佩奇汇报。
+　　这个汇报层级也遭受过质疑，但一直延续到了现在。
+　　2015年，Google重组为Alphabet公司，新的架构似乎可以在DeepMind和其他部门之间划出一条更清晰的分界线。这本应解决一些问题，但，并没有。
+　　2017年9月，作为Alphabet重组的最后一步，Google把Waymo、GV和Verily等公司剥离装入一家新的控股公司：XXVI。
+　　DeepMind当时是不是也从Google剥离了？
+　　即便现在也没有清晰地答案。DeepMind和Alphabet的发言人分别拒绝对此发表评论，而且还建议把问题抛给对方回答。
+　　但显而易见的是，DeepMind获得了Alphabet和佩奇的预算支持，但并没有像另外一些部门一样，获得独立发展的地位。这也意味着无法从外部融资。
+　　毫无疑问，它当然在Alphabet范围内，但却并不能和Waymo、Calico等并称Alphabet子公司。但是，它和归属于Google的Google Brain等团队也完全不一样。
+　　组织架构上的问题没解决，时间还到了相当关键的时刻。
+　　明年3月，就是Google收购DeepMind五周年，随着DeepMind来到Google的75名早期员工，包括DeepMind CEO哈萨比斯自己，都可以自行决定去留。
+　　你说时间点微妙不微妙？
+　　— 完 —
+
+
