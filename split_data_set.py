@@ -42,4 +42,9 @@ for label in labels:
 
 with open('words_set.txt', 'w', encoding='utf-8') as f:
     for item in words_list:
-        f.writelines(item + '\n')
+        f.write(item + '\n')
+
+with open('labels_set.txt', 'w', encoding='utf-8') as f:
+    for i in range(800):
+        num = int(i / 100) + 1
+        f.write(str(num) + '\n')
