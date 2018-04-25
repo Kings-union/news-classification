@@ -6,13 +6,13 @@ from keras.layers import Dense, Input, Flatten, Dropout
 from keras.layers import Conv1D, MaxPooling1D, Embedding
 from keras.models import Sequential
 
-CATEGORY_NUMBER = 8 # 分类个数
-CATEGORY_LENGTH = 100 # 每个分类的数据集大小
-MAX_SEQUENCE_LENGTH = 200 # 每条新闻最大长度
-EMBEDDING_DIM = 150 # 词向量空间维度
-TRAINING_PERCENT = 0.7 # 训练集比例
-VALIDATION_PERCENT = 0.1 # 验证集比例
-TEST_PERCENT = 0.2 # 测试集比例
+CATEGORY_NUMBER = 8        # 分类个数
+CATEGORY_LENGTH = 100      # 每个分类的数据集大小
+MAX_SEQUENCE_LENGTH = 300  # 每条新闻最大长度
+EMBEDDING_DIM = 200        # 词向量空间维度
+TRAINING_PERCENT = 0.7     # 训练集比例
+VALIDATION_PERCENT = 0.1   # 验证集比例
+TEST_PERCENT = 0.2         # 测试集比例
 
 # Read data set from file
 with open('words_set.txt', 'r', encoding='utf-8') as f:
@@ -23,12 +23,12 @@ with open('labels_set.txt', 'r', encoding='utf-8') as f:
 
 # Pre processing data
 tokenizer = Tokenizer()
-tokenizer.fit_on_texts(all_texts)
-sequences = tokenizer.texts_to_sequences(all_texts)
-word_index = tokenizer.word_index
-print('Found %s unique tokens.' % len(word_index))
-data = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)
-labels = to_categorical(np.asarray(all_labels))
+tokenizer.fit_on_texts(all_texts)  # Update internal vocabulary based on the list of texts
+sequences = tokenizer.texts_to_sequences(all_texts)  # Transform each text to a sequence of integers
+word_count = len(tokenizer.word_index)  # Get the unique word count in all the texts
+print('Found %s unique words.' % word_count)
+data = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)  # Pad or truncate the 'text sequence' to the same length
+labels = to_categorical(np.asarray(all_labels), 8)  # Convert the one-value labels to one-hot vector labels
 print('Shape of data tensor:', data.shape)
 print('Shape of label tensor:', labels.shape)
 
@@ -63,8 +63,8 @@ print('val docs: ' + str(len(val_data)))
 print('test docs: ' + str(len(test_data)))
 
 # Build a model
-model = Sequential()
-model.add(Embedding(len(word_index) + 1, EMBEDDING_DIM, input_length=MAX_SEQUENCE_LENGTH))
+model = Sequential()  # Initialize a sequential model
+model.add(Embedding(input_dim=word_count+1, output_dim=EMBEDDING_DIM, input_length=MAX_SEQUENCE_LENGTH))
 model.add(Dropout(0.2))
 model.add(Conv1D(250, 3, padding='valid', activation='relu', strides=1))
 model.add(MaxPooling1D(3))
@@ -80,7 +80,7 @@ model.compile(loss='categorical_crossentropy',
 model.fit(train_data_array, train_label_array, validation_data=(val_data_array, val_label_array), epochs=40, batch_size=128)
 
 # Save trained model
-model.save('word_vector_cnn.h5')
+model.save('cnn.h5')
 
 # Evaluate model
 print(model.evaluate(test_data_array, test_label_array))

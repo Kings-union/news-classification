@@ -2,14 +2,14 @@ import os
 import re
 import jieba
 
-labels = (("1", "体育"),
-          ("2", "军事"),
-          ("3", "娱乐"),
-          ("4", "旅行"),
-          ("5", "游戏"),
-          ("6", "社会"),
-          ("7", "科技"),
-          ("8", "财经")
+labels = (("0", "体育"),
+          ("1", "军事"),
+          ("2", "娱乐"),
+          ("3", "旅行"),
+          ("4", "游戏"),
+          ("5", "社会"),
+          ("6", "科技"),
+          ("7", "财经")
           )
 
 stop_words = list()
@@ -46,5 +46,5 @@ with open('words_set.txt', 'w', encoding='utf-8') as f:
 
 with open('labels_set.txt', 'w', encoding='utf-8') as f:
     for i in range(800):
-        num = int(i / 100) + 1
+        num = int(i / 100)
         f.write(str(num) + '\n')
