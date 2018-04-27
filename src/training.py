@@ -8,17 +8,17 @@ from keras.models import Sequential
 
 CATEGORY_NUMBER = 8        # 分类个数
 CATEGORY_LENGTH = 100      # 每个分类的数据集大小
-MAX_SEQUENCE_LENGTH = 300  # 每条新闻最大长度
+MAX_SEQUENCE_LENGTH = 200  # 每条新闻最大长度
 EMBEDDING_DIM = 200        # 词向量空间维度
 TRAINING_PERCENT = 0.7     # 训练集比例
 VALIDATION_PERCENT = 0.1   # 验证集比例
 TEST_PERCENT = 0.2         # 测试集比例
 
 # Read data set from file
-with open('words_set.txt', 'r', encoding='utf-8') as f:
+with open(r'../data_set/words_set.txt', 'r', encoding='utf-8') as f:
     all_texts = [line.strip() for line in f.readlines()]
 
-with open('labels_set.txt', 'r', encoding='utf-8') as f:
+with open(r'../data_set/labels_set.txt', 'r', encoding='utf-8') as f:
     all_labels = [line.strip() for line in f.readlines()]
 
 # Pre processing data
@@ -31,6 +31,10 @@ data = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)  # Pad or truncate t
 labels = to_categorical(np.asarray(all_labels), 8)  # Convert the one-value labels to one-hot vector labels
 print('Shape of data tensor:', data.shape)
 print('Shape of label tensor:', labels.shape)
+
+# Save words sequence
+with open(r'../data_set/words_sequence.txt', 'w', encoding='utf-8') as f:
+    f.write(str(tokenizer.word_index))
 
 # Separate training data/label, validation data/label and test data/label
 train_data = list()
@@ -61,6 +65,7 @@ test_label_array = np.array(test_label)
 print('train docs: ' + str(len(train_data)))
 print('val docs: ' + str(len(val_data)))
 print('test docs: ' + str(len(test_data)))
+print(list(test_data[3]))
 
 # Build a model
 model = Sequential()  # Initialize a sequential model
@@ -80,7 +85,7 @@ model.compile(loss='categorical_crossentropy',
 model.fit(train_data_array, train_label_array, validation_data=(val_data_array, val_label_array), epochs=40, batch_size=128)
 
 # Save trained model
-model.save('cnn.h5')
+model.save(r'./saved_models/cnn_model.h5')
 
 # Evaluate model
 print(model.evaluate(test_data_array, test_label_array))

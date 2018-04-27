@@ -13,13 +13,13 @@ labels = (("0", "体育"),
           )
 
 stop_words = list()
-with open(os.getcwd() + '\\stop_words.txt', 'r', encoding='utf-8') as f:
+with open(r'../data_set/stop_words.txt', 'r', encoding='utf-8') as f:
     for line in f.readlines():
         stop_words.append(line.strip())
 
 words_list = list()
 for label in labels:
-    for root, dirs, files in os.walk(os.getcwd() + '\\data_set\\' + label[1]):
+    for root, dirs, files in os.walk(r'../data_set/' + label[1]):
         count = 1
         for item in files:
             words_line = ""
@@ -40,11 +40,12 @@ for label in labels:
             else:
                 count += 1
 
-with open('words_set.txt', 'w', encoding='utf-8') as f:
+# Save processed texts
+with open(r'../data_set/words_set.txt', 'w', encoding='utf-8') as f:
     for item in words_list:
         f.write(item + '\n')
 
-with open('labels_set.txt', 'w', encoding='utf-8') as f:
+with open(r'../data_set/labels_set.txt', 'w', encoding='utf-8') as f:
     for i in range(800):
         num = int(i / 100)
         f.write(str(num) + '\n')
