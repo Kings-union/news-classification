@@ -4,7 +4,10 @@ from keras.preprocessing.sequence import pad_sequences
 from keras.utils import to_categorical
 from keras.layers import Dense, Input, Flatten, Dropout
 from keras.layers import Conv1D, MaxPooling1D, Embedding
+from keras.layers import LSTM
 from keras.models import Sequential
+from sklearn.svm import SVC
+import gensim
 
 CATEGORY_NUMBER = 8        # 分类个数
 CATEGORY_LENGTH = 100      # 每个分类的数据集大小
@@ -26,9 +29,10 @@ tokenizer = Tokenizer()
 tokenizer.fit_on_texts(all_texts)  # Update internal vocabulary based on the list of texts
 sequences = tokenizer.texts_to_sequences(all_texts)  # Transform each text to a sequence of integers
 word_count = len(tokenizer.word_index)  # Get the unique word count in all the texts
-print('Found %s unique words.' % word_count)
 data = pad_sequences(sequences, maxlen=MAX_SEQUENCE_LENGTH)  # Pad or truncate the 'text sequence' to the same length
+# data = tokenizer.sequences_to_matrix(sequences, mode='tfidf')  # Used TF-IDF in MLP model
 labels = to_categorical(np.asarray(all_labels), 8)  # Convert the one-value labels to one-hot vector labels
+print('Found %s unique words.' % word_count)
 print('Shape of data tensor:', data.shape)
 print('Shape of label tensor:', labels.shape)
 
@@ -65,16 +69,39 @@ test_label_array = np.array(test_label)
 print('train docs: ' + str(len(train_data)))
 print('val docs: ' + str(len(val_data)))
 print('test docs: ' + str(len(test_data)))
-print(list(test_data[3]))
 
 # Build a model
 model = Sequential()  # Initialize a sequential model
+
+# word2vec
+# w2v_model = gensim.models.KeyedVectors.load_word2vec_format(r'../saved_models/word2vec.bin', binary=True)
+# embedding_matrix = np.zeros((word_count+1, EMBEDDING_DIM))
+# for word, i in tokenizer.word_index.items():
+#     if word in w2v_model:
+#         embedding_matrix[i] = np.asarray(w2v_model[word], dtype='float32')
+#
+# embedding_layer = Embedding(word_count+1, EMBEDDING_DIM, weights=[embedding_matrix],
+#                             input_length=MAX_SEQUENCE_LENGTH, trainable=False)
+# model.add(embedding_layer)
+
+# CNN
 model.add(Embedding(input_dim=word_count+1, output_dim=EMBEDDING_DIM, input_length=MAX_SEQUENCE_LENGTH))
 model.add(Dropout(0.2))
 model.add(Conv1D(250, 3, padding='valid', activation='relu', strides=1))
 model.add(MaxPooling1D(3))
 model.add(Flatten())
 model.add(Dense(EMBEDDING_DIM, activation='relu'))
+
+# LSTM
+# model.add(Embedding(input_dim=word_count+1, output_dim=EMBEDDING_DIM, input_length=MAX_SEQUENCE_LENGTH))
+# model.add(LSTM(200, dropout=0.2, recurrent_dropout=0.2))
+# model.add(Dropout(0.2))
+
+# MLP
+# model.add(Dense(512, input_shape=(word_count+1,), activation='relu'))
+# model.add(Dropout(0.2))
+
+# Full connection layer
 model.add(Dense(labels.shape[1], activation='softmax'))
 model.summary()
 
@@ -84,8 +111,8 @@ model.compile(loss='categorical_crossentropy',
               metrics=['accuracy'])
 model.fit(train_data_array, train_label_array, validation_data=(val_data_array, val_label_array), epochs=40, batch_size=128)
 
-# Save trained model
-model.save(r'./saved_models/cnn_model.h5')
-
 # Evaluate model
 print(model.evaluate(test_data_array, test_label_array))
+
+# Save trained model
+model.save(r'../saved_models/cnn_model.h5')

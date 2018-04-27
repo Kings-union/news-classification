@@ -2,15 +2,8 @@ import os
 import re
 import jieba
 
-labels = (("0", "体育"),
-          ("1", "军事"),
-          ("2", "娱乐"),
-          ("3", "旅行"),
-          ("4", "游戏"),
-          ("5", "社会"),
-          ("6", "科技"),
-          ("7", "财经")
-          )
+labels = {0: "体育", 1: "军事", 2: "娱乐", 3: "旅行", 4: "游戏", 5: "社会", 6: "科技", 7: "财经"}
+ARTICLE_AMOUNT = 100
 
 stop_words = list()
 with open(r'../data_set/stop_words.txt', 'r', encoding='utf-8') as f:
@@ -18,8 +11,8 @@ with open(r'../data_set/stop_words.txt', 'r', encoding='utf-8') as f:
         stop_words.append(line.strip())
 
 words_list = list()
-for label in labels:
-    for root, dirs, files in os.walk(r'../data_set/' + label[1]):
+for i in range(len(labels)):
+    for root, dirs, files in os.walk(r'../data_set/' + labels[i]):
         count = 1
         for item in files:
             words_line = ""
@@ -33,9 +26,9 @@ for label in labels:
                         if not re.match('[a-zA-Z0-9\s!]', word):
                             words_line += word + ' '
 
-            print(words_line)
+            # print(words_line)
             words_list.append(words_line)
-            if count == 100:  # Only use the first 100 articles
+            if count == ARTICLE_AMOUNT:  # Only use the first ARTICLE_AMOUNT articles
                 break
             else:
                 count += 1
