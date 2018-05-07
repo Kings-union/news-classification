@@ -43,12 +43,12 @@ def store_news(category, abbr, url):
     news = get_news_link(abbr, url)
     # news = get_news_link_from_file(category + '.txt')
     sequence = 1
-    os.mkdir('data_set/' + category)
+    os.mkdir(r'../data_set/' + category)
     try:
         for link, title in news.items():
             print(link + ' ' + title)
             content = get_news_content(link)
-            filename = 'data_set/' + category + '/' + str(sequence) + '.txt'
+            filename = r'../data_set/' + category + '/' + str(sequence) + '.txt'
             with open(filename, 'w', encoding='utf8') as f:
                 f.write(link + '\n')
                 f.write(category + '\n')
