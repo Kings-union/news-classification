@@ -19,7 +19,7 @@ with open(r'../data_set/words_sequence.txt', 'r', encoding='utf-8') as f:
     words_seq = eval(f.read())
 
 # Get unspecified text
-with open(r'../data_set/财经/120.txt', 'r', encoding='utf-8') as f:
+with open(r'../data_set/娱乐/120.txt', 'r', encoding='utf-8') as f:
     text = f.read()
 
 # Transform the text to words
@@ -41,7 +41,7 @@ for word in words:
 data = pad_sequences(seq_data, maxlen=MAX_SEQUENCE_LENGTH)
 
 # Load trained model
-m = keras.models.load_model(r'../saved_models/cnn_model.h5')
+m = keras.models.load_model(r'../saved_models/sogou_w2v_model.h5')
 
 # Predict the category of the text
 prob = m.predict_proba(np.array(data))[0]

@@ -9,6 +9,7 @@ from keras.models import Sequential
 from sklearn.svm import SVC
 import gensim
 
+ARTICLE_AMOUNT = 200       # 每个分类文章数
 CATEGORY_NUMBER = 8        # 分类个数
 CATEGORY_LENGTH = 100      # 每个分类的数据集大小
 MAX_SEQUENCE_LENGTH = 200  # 每条新闻最大长度
@@ -50,8 +51,8 @@ test_label = list()
 p1 = int(CATEGORY_LENGTH * TRAINING_PERCENT)
 p2 = int(CATEGORY_LENGTH * (1 - TEST_PERCENT))
 for i in range(CATEGORY_NUMBER):
-    part_data = data[(i * 100 + 0):(i * 100 + 100)]
-    part_label = labels[(i * 100 + 0):(i * 100 + 100)]
+    part_data = data[(i * ARTICLE_AMOUNT + 0):(i * ARTICLE_AMOUNT + ARTICLE_AMOUNT)]
+    part_label = labels[(i * ARTICLE_AMOUNT + 0):(i * ARTICLE_AMOUNT + ARTICLE_AMOUNT)]
     train_data.extend(part_data[:p1])
     train_label.extend(part_label[:p1])
     val_data.extend(part_data[p1:p2])
@@ -74,20 +75,19 @@ print('test docs: ' + str(len(test_data)))
 model = Sequential()  # Initialize a sequential model
 
 # word2vec
-# w2v_model = gensim.models.KeyedVectors.load_word2vec_format(r'../saved_models/word2vec.bin', binary=True)
+# w2v_model = gensim.models.KeyedVectors.load_word2vec_format(r'../saved_models/sogou_word2vec.bin', binary=True)
 # embedding_matrix = np.zeros((word_count+1, EMBEDDING_DIM))
 # for word, i in tokenizer.word_index.items():
 #     if word in w2v_model:
 #         embedding_matrix[i] = np.asarray(w2v_model[word], dtype='float32')
 #
-# embedding_layer = Embedding(word_count+1, EMBEDDING_DIM, weights=[embedding_matrix],
-#                             input_length=MAX_SEQUENCE_LENGTH, trainable=False)
+# embedding_layer = Embedding(word_count+1, EMBEDDING_DIM, weights=[embedding_matrix], input_length=MAX_SEQUENCE_LENGTH, trainable=False)
 # model.add(embedding_layer)
 
 # CNN
 model.add(Embedding(input_dim=word_count+1, output_dim=EMBEDDING_DIM, input_length=MAX_SEQUENCE_LENGTH))
 model.add(Dropout(0.2))
-model.add(Conv1D(250, 3, padding='valid', activation='relu', strides=1))
+model.add(Conv1D(300, 3, padding='valid', activation='relu', strides=1))
 model.add(MaxPooling1D(3))
 model.add(Flatten())
 model.add(Dense(EMBEDDING_DIM, activation='relu'))
@@ -106,13 +106,11 @@ model.add(Dense(labels.shape[1], activation='softmax'))
 model.summary()
 
 # Compile and train the model
-model.compile(loss='categorical_crossentropy',
-              optimizer='rmsprop',
-              metrics=['accuracy'])
-model.fit(train_data_array, train_label_array, validation_data=(val_data_array, val_label_array), epochs=40, batch_size=128)
+model.compile(loss='categorical_crossentropy', optimizer='rmsprop', metrics=['accuracy'])
+model.fit(train_data_array, train_label_array, validation_data=(val_data_array, val_label_array), epochs=30, batch_size=128)
 
 # Evaluate model
 print(model.evaluate(test_data_array, test_label_array))
 
 # Save trained model
-model.save(r'../saved_models/cnn_model.h5')
+model.save(r'../saved_models/w2v_model.h5')

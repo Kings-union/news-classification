@@ -3,7 +3,7 @@ import re
 import jieba
 
 labels = {0: "体育", 1: "军事", 2: "娱乐", 3: "旅行", 4: "游戏", 5: "社会", 6: "科技", 7: "财经"}
-ARTICLE_AMOUNT = 100
+ARTICLE_AMOUNT = 200
 
 stop_words = list()
 with open(r'../data_set/stop_words.txt', 'r', encoding='utf-8') as f:
@@ -39,6 +39,6 @@ with open(r'../data_set/words_set.txt', 'w', encoding='utf-8') as f:
         f.write(item + '\n')
 
 with open(r'../data_set/labels_set.txt', 'w', encoding='utf-8') as f:
-    for i in range(800):
-        num = int(i / 100)
+    for i in range(8 * ARTICLE_AMOUNT):
+        num = int(i / ARTICLE_AMOUNT)
         f.write(str(num) + '\n')
